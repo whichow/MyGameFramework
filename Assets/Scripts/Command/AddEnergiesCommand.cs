@@ -13,7 +13,8 @@ public class AddEnergiesCommand : Command
 
 	public override void Execute()
 	{
-		PlayerPrefs.SetInt("Energies", PlayerPrefs.GetInt("Energies", 0) + _eneriges);
-		MainCtrl.Instance.SetEnergies(PlayerPrefs.GetInt("Energies", 0));
+		var eneriges = PlayerPrefs.GetInt("Energies", 0) + _eneriges;
+		PlayerPrefs.SetInt("Energies", eneriges);
+		MainCtrl.Instance.SetEnergies(eneriges);
 	}
 }

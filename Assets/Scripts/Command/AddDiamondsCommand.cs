@@ -12,7 +12,8 @@ public class AddDiamondsCommand : Command {
 
 	public override void Execute()
 	{
-		PlayerPrefs.SetInt("Diamonds", PlayerPrefs.GetInt("Diamonds", 0) + _diamonds);
-		MainCtrl.Instance.SetDiamonds(PlayerPrefs.GetInt("Diamonds", 0));
+		var diamonds = PlayerPrefs.GetInt("Diamonds", 0) + _diamonds;
+		PlayerPrefs.SetInt("Diamonds", diamonds);
+		MainCtrl.Instance.SetDiamonds(diamonds);
 	}
 }

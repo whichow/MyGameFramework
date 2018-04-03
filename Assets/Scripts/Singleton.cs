@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 public class Singleton<T> where T : Singleton<T>, new()
 {
@@ -24,20 +24,5 @@ public class Singleton<T> where T : Singleton<T>, new()
             }
             return instance;
         }
-    }
-
-    public virtual void Init()
-    {
-
-    }
-
-    public virtual void Release()
-    {
-
-    }
-
-    public virtual void Update()
-    {
-        
     }
 }

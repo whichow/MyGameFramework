@@ -18,7 +18,7 @@ public class StartSceneState : ISceneState
         var startButton = UITool.GetUIComponent<Button>("StartButton");
         startButton.onClick.AddListener(() =>
         {
-            _controller.SetState(new LoadingState(_controller, new MainSceneState(_controller)));
+            _controller.SetState(new LoadingSceneState(_controller, new MainSceneState(_controller)));
         });
     }
 
@@ -27,7 +27,7 @@ public class StartSceneState : ISceneState
         _stayTime -= Time.deltaTime;
         if (_stayTime < 0)
         {
-            _controller.SetState(new LoadingState(_controller, new MainSceneState(_controller)));
+            _controller.SetState(new LoadingSceneState(_controller, new MainSceneState(_controller)));
         }
     }
 }

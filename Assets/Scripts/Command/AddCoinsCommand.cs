@@ -13,7 +13,8 @@ public class AddCoinsCommand : Command
 
 	public override void Execute()
 	{
-		PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) + _coins);
-		MainCtrl.Instance.SetCoins(PlayerPrefs.GetInt("Coins", 0));
+		var coins = PlayerPrefs.GetInt("Coins", 0) + _coins;
+		PlayerPrefs.SetInt("Coins", coins);
+		MainCtrl.Instance.SetCoins(coins);
 	}
 }

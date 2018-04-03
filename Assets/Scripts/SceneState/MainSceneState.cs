@@ -17,6 +17,11 @@ public class MainSceneState : ISceneState
         DiamondsCtrl.Instance.Init();
         EnergiesCtrl.Instance.Init();
         PlayerInfoCtrl.Instance.Init();
+        CombatCtrl.Instance.Init();
+        CombatCtrl.Instance.OnEnterGame += (level) =>
+        {
+            _controller.SetState(new LoadingSceneState(_controller, new GameSceneState(_controller, level)));
+        };
     }
 
     public override void StateEnd()
@@ -26,6 +31,7 @@ public class MainSceneState : ISceneState
         DiamondsCtrl.Instance.Release();
         EnergiesCtrl.Instance.Release();
         PlayerInfoCtrl.Instance.Release();
+        CombatCtrl.Instance.Release();
     }
 
     public override void StateUpdate()
@@ -35,5 +41,6 @@ public class MainSceneState : ISceneState
         DiamondsCtrl.Instance.Update();
         EnergiesCtrl.Instance.Update();
         PlayerInfoCtrl.Instance.Update();
+        CombatCtrl.Instance.Update();
     }
 }
