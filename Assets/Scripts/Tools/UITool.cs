@@ -11,7 +11,7 @@ public static class UITool
         m_CanvasObj = null;
     }
 
-    public static T GetComponent<T>(GameObject gameObject, string path) where T : MonoBehaviour
+    public static T GetComponent<T>(GameObject gameObject, string path) where T : UnityEngine.Component
     {
         Transform root = gameObject.transform.Find(path);
         if (root == null)
@@ -28,13 +28,30 @@ public static class UITool
         return comp;
     }
 
+    public static T[] GetComponentsInChildren<T>(GameObject gameObject, string path) where T : UnityEngine.Component
+    {
+        Transform root = gameObject.transform.Find(path);
+        if (root == null)
+        {
+            Debug.LogError("UI查找路径错误");
+            return null;
+        }
+        T[] comp = root.GetComponentsInChildren<T>();
+        if (comp == null)
+        {
+            Debug.LogError("没有获取到UI组件");
+            return null;
+        }
+        return comp;
+    }
+
     public static void AddUIGameObject(GameObject gameObject)
     {
         if (m_CanvasObj == null)
             m_CanvasObj = UnityTool.FindGameObject("Canvas");
         if (m_CanvasObj == null)
-			return;
-		UnityTool.Attach(m_CanvasObj, gameObject);
+            return;
+        UnityTool.Attach(m_CanvasObj, gameObject);
     }
 
     // 找尋限定在Canvas畫布下的UI界面

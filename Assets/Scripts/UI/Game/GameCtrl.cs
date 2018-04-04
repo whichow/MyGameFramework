@@ -6,11 +6,15 @@ public class GameCtrl : BaseCtrl<GameCtrl>
 {
 	private GameView _gameView;
 	private float _time;
+	private Tower _placingTower;
+	private TowerFactory _towerFactory;
 
 	public override void Init()
 	{
 		_gameView = new GameView(UITool.FindUIGameObject("GameView"));
 		_gameView.Init();
+
+		_towerFactory = FactoryCenter.GetTowerFactory(TowerType.Laser);
 	}
 
 	public override void Release()
@@ -37,5 +41,24 @@ public class GameCtrl : BaseCtrl<GameCtrl>
 	public void GetHeart()
 	{
 		_gameView.GetHeart();
+	}
+
+	public void BeginPlaceTower()
+	{
+		_placingTower = _towerFactory.CreateTower();
+		_placingTower.SetPlaceable(true);
+	}
+
+	public void EndPlaceTower()
+	{
+		if(_placingTower.CanPlace())
+		{
+			_placingTower.SetPlaceable(false);
+		}
+		else
+		{
+			_placingTower.Destroy();
+		}
+		_placingTower = null;
 	}
 }

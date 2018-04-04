@@ -6,10 +6,12 @@ public class Placeable : MonoBehaviour
 {
 	public bool isPlacing;
 	private RaycastHit hit;
+	private bool canPlace;
 
     // Update is called once per frame
     void Update()
     {
+		canPlace = false;
 		if(!isPlacing)
 		{
 			return;
@@ -21,6 +23,7 @@ public class Placeable : MonoBehaviour
 			if(place != null)
 			{
 				transform.position = place.GetPlace();
+				canPlace = true;
 			}
 			else
 			{
@@ -28,4 +31,9 @@ public class Placeable : MonoBehaviour
 			}
 		}
     }
+
+	public bool CanPlace()
+	{
+		return canPlace;
+	}
 }
