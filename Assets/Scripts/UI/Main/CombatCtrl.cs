@@ -35,6 +35,7 @@ public class CombatCtrl : BaseCtrl<CombatCtrl>
         if(OnEnterGame != null)
 		{
 			OnEnterGame(_combatView.CurrentLevel);
+			OnEnterGame = null;
 		}
     }
 

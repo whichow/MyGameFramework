@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainSceneState : ISceneState
 {
-    public MainSceneState(SceneStateController controller) : base(controller)
+    public MainSceneState()
     {
         StateName = "MainState";
         SceneName = "MainScene";
@@ -20,7 +20,7 @@ public class MainSceneState : ISceneState
         CombatCtrl.Instance.Init();
         CombatCtrl.Instance.OnEnterGame += (level) =>
         {
-            _controller.SetState(new LoadingSceneState(_controller, new GameSceneState(_controller, level)));
+            SceneStateController.Instance.SetState(new LoadingSceneState(new GameSceneState(level)));
         };
     }
 

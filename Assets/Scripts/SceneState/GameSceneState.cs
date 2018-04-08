@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class GameSceneState : ISceneState
 {
-    public int Level
-    {
-        get;
-        private set;
-    }
+    private GameSceneManager _sceneManager;
+    private int _level;
 
-    public GameSceneState(SceneStateController controller, int level) : base(controller)
+    public GameSceneState(int level)
     {
         StateName = "GameState";
         SceneName = "GameScene";
-        Level = level;
+
+        _sceneManager = GameSceneManager.Instance;
+        _level = level;
     }
 
     public override void StateBegin()
     {
-        GameCtrl.Instance.Init();
+        _sceneManager.Init(_level);
     }
 
     public override void StateEnd()
     {
-        GameCtrl.Instance.Release();
+        _sceneManager.Release();
     }
 
     public override void StateUpdate()
     {
-        GameCtrl.Instance.Update();
+        _sceneManager.Update();
     }
 }

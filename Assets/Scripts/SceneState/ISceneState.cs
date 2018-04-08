@@ -16,13 +16,6 @@ public abstract class ISceneState
 		protected set;
 	}
 
-	protected SceneStateController _controller;
-
-	public ISceneState(SceneStateController controller)
-	{
-		_controller = controller;
-	}
-
 	public virtual void StateBegin()
 	{
 

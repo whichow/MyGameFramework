@@ -10,9 +10,9 @@ public class Path : MonoBehaviour
     {
         nodes = GetComponentsInChildren<PathNode>();
         for (int i = 0; i < nodes.Length - 1; i++)
-		{
-			nodes[i].next = nodes[i + 1];
-		}
+        {
+            nodes[i].next = nodes[i + 1];
+        }
     }
 
     void OnDrawGizmos()
@@ -27,5 +27,14 @@ public class Path : MonoBehaviour
     public PathNode[] GetPathNodes()
     {
         return nodes;
+    }
+
+    public PathNode GetPathNode(int index)
+    {
+        if (index < nodes.Length)
+        {
+            return nodes[index];
+        }
+        return null;
     }
 }

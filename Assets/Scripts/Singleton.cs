@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Singleton<T> where T : Singleton<T>, new()
+public class Singleton<T> where T : Singleton<T>
 {
     private static T instance = null;
     protected static readonly object lockObject = new object();

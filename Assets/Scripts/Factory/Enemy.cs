@@ -11,4 +11,9 @@ public abstract class Enemy
         _gameObject = gameObject;
         _tweenPath = gameObject.GetComponent<TweenPath>();
     }
+
+    public void SetActive(bool active)
+    {
+        _gameObject.SetActive(active);
+    }
 }

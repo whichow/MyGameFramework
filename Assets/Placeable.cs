@@ -5,8 +5,13 @@ using UnityEngine;
 public class Placeable : MonoBehaviour
 {
 	public bool isPlacing;
-	private RaycastHit hit;
 	private bool canPlace;
+	private int layerMask;
+
+	void Awake()
+	{
+		layerMask = LayerMask.GetMask("Terrain", "Place");
+	}
 
     // Update is called once per frame
     void Update()
@@ -16,8 +21,9 @@ public class Placeable : MonoBehaviour
 		{
 			return;
 		}
+		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+		if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
 		{
 			var place = hit.collider.GetComponent<Place>();
 			if(place != null)

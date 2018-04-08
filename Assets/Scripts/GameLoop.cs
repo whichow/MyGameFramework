@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameLoop : MonoBehaviour
 {
-    private SceneStateController _controller = new SceneStateController();
+    private SceneStateController _controller;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -20,9 +20,10 @@ public class GameLoop : MonoBehaviour
     /// </summary>
     void Start()
     {
+        _controller = SceneStateController.Instance;
         App.Instance.InitCallBack += () =>
         {
-            _controller.SetState(new StartSceneState(_controller));
+            _controller.SetState(new StartSceneState());
         };
         App.Instance.Init();
     }

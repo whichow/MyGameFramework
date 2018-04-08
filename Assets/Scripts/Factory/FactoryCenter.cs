@@ -1,26 +1,46 @@
 
+using System.Collections.Generic;
+
 public class FactoryCenter
 {
-    private static EnemyCreeperFactory enemyCreeperFactory = new EnemyCreeperFactory();
-    private static LaserTowerFactory laserTowerFactory = new LaserTowerFactory();
+    private static Dictionary<TowerType, TowerFactory> _towerFactorys = new Dictionary<TowerType, TowerFactory>();
+    private static Dictionary<EnemyType, EnemyFactory> _enemyFactorys = new Dictionary<EnemyType, EnemyFactory>();
+
+    public static TowerFactory GetTowerFactory(TowerType towerType)
+    {
+        if(!_towerFactorys.ContainsKey(towerType))
+        {
+            _towerFactorys.Add(towerType, CreateTowerFactory(towerType));
+        }
+        return _towerFactorys[towerType];
+    }
 
     public static EnemyFactory GetEnemyFactory(EnemyType enemyType)
     {
-        switch (enemyType)
+        if (!_enemyFactorys.ContainsKey(enemyType))
         {
-            case EnemyType.Creeper:
-                return enemyCreeperFactory;
+            _enemyFactorys.Add(enemyType, CreateEnemyFactory(enemyType));
+        }
+        return _enemyFactorys[enemyType];
+    }
+
+    public static TowerFactory CreateTowerFactory(TowerType towerType)
+    {
+        switch (towerType)
+        {
+            case TowerType.Laser:
+                return new LaserTowerFactory();
             default:
                 return null;
         }
     }
 
-    public static TowerFactory GetTowerFactory(TowerType towerType)
+    public static EnemyFactory CreateEnemyFactory(EnemyType enemyType)
     {
-        switch (towerType)
+        switch (enemyType)
         {
-            case TowerType.Laser:
-                return laserTowerFactory;
+            case EnemyType.Creeper:
+                return new EnemyCreeperFactory();
             default:
                 return null;
         }

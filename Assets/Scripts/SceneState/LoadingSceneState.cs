@@ -6,7 +6,7 @@ public class LoadingSceneState : ISceneState
 {
     private ISceneState _loadState;
 
-    public LoadingSceneState(SceneStateController controller, ISceneState loadState) : base(controller)
+    public LoadingSceneState(ISceneState loadState)
     {
         StateName = "LoadingState";
         SceneName = "LoadingScene";
@@ -16,7 +16,7 @@ public class LoadingSceneState : ISceneState
     public override void StateBegin()
     {
         LoadingCtrl.Instance.Init();
-        _controller.SetState(_loadState);
+        SceneStateController.Instance.SetState(_loadState);
     }
 
     public override void StateEnd()

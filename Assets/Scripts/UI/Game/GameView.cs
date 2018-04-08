@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class GameView : UIView
     private Animator[] _heartAnims;
     private int _heartIndex;
     private Dragable[] _towerItems;
+    private Button _startGameButton;
+    private TowerType[] _towers = new TowerType[] { TowerType.Laser, TowerType.Laser, TowerType.Laser, TowerType.Laser, TowerType.Laser };
 
     public GameView(GameObject gameObject) : base(gameObject)
     {
@@ -22,13 +25,21 @@ public class GameView : UIView
 
         for (int i = 0; i < _towerItems.Length; i++)
         {
-			var index = i;
+            var index = i;
             _towerItems[i].onDragBegin.AddListener(() =>
             {
-                OnDragBegin(index);
+                OnDragBegin(_towers[index]);
             });
-			_towerItems[i].onDragEnd.AddListener(OnDragEnd);
+            _towerItems[i].onDragEnd.AddListener(OnDragEnd);
         }
+
+        _startGameButton = UITool.GetComponent<Button>(_gameObject, "StartGame");
+        _startGameButton.onClick.AddListener(OnStartGameButtonClick);
+    }
+
+    private void OnStartGameButtonClick()
+    {
+        GameSceneManager.Instance.StartGame();
     }
 
     public void LoseHeart()
@@ -49,13 +60,13 @@ public class GameView : UIView
         }
     }
 
-    private void OnDragBegin(int index)
+    private void OnDragBegin(TowerType tower)
     {
-		GameCtrl.Instance.BeginPlaceTower();
+        GameCtrl.Instance.BeginPlaceTower(tower);
     }
 
-	private void OnDragEnd()
-	{
-		GameCtrl.Instance.EndPlaceTower();
-	}
+    private void OnDragEnd()
+    {
+        GameCtrl.Instance.EndPlaceTower();
+    }
 }

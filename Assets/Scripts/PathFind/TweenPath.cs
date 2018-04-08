@@ -5,10 +5,12 @@ using UnityEngine;
 public class TweenPath : MonoBehaviour
 {
     // private Path path;
-    public PathNode node;
+    private PathNode node;
 
     void Start()
     {
+        var path = GameObject.Find("Path").GetComponent<Path>();
+        node = path.GetPathNode(0);
         transform.position = node.transform.position;
     }
 

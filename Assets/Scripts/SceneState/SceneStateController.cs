@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneStateController
+public class SceneStateController : Singleton<SceneStateController>
 {
     private ISceneState _state;
     private ISceneState _loadState;
@@ -29,7 +29,7 @@ public class SceneStateController
     {
         if (_state != null)
         {
-            // Debug.Log("StateEnd " + _loadState.ToString());
+            // Debug.Log("StateEnd " + _state.ToString());
             _state.StateEnd();
         }
         _state = null;
@@ -46,7 +46,7 @@ public class SceneStateController
     {
         if (_state != null)
         {
-            // Debug.Log("StateUpdate " + _loadState.ToString());
+            // Debug.Log("StateUpdate " + _state.ToString());
             _state.StateUpdate();
         }
     }

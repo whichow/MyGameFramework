@@ -10,7 +10,9 @@ public class LaserTowerFactory : TowerFactory
     {
 		var assetLoader = App.Instance.GetManager<AssetLoader>();
         var go = assetLoader.LoadTower(asset);
+		go.layer = LayerMask.NameToLayer("Tower");
 		go.AddComponent<Placeable>();
+		go.AddComponent<Clickable>();
 		LaserTower laser = new LaserTower(go);
 		return laser;
     }

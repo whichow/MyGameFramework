@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4570829516699268}
   - component: {fileID: 95855852975095314}
+  - component: {fileID: 65072243126487600}
   m_Layer: 0
   m_Name: Tow_Laser3
   m_TagString: Untagged
@@ -250,6 +251,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1194338366414896}
   m_Mesh: {fileID: 4300004, guid: 9f0ce83c610817145bf8eff3e3268a6c, type: 3}
+--- !u!65 &65072243126487600
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908751342990864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!95 &95855852975095314
 Animator:
   serializedVersion: 3
